@@ -22,9 +22,11 @@
 
   <style>
 
-    /*
-      misc styles, nothing to do with CSS variables
-    */
+    :root{
+      --base : yellow;
+      --blur : 10px;
+      --spacing : 10px;
+    }
 
     body {
       text-align: center;
@@ -38,13 +40,47 @@
     .controls {
       margin-bottom: 50px;
     }
-
+    img{
+      padding: var(--spacing);
+      background : var(--base);
+      filter: blur(var(--blur));
+    }
+    .hl{
+      color: var(--base);
+    }
     input {
       width: 100px;
     }
   </style>
 
   <script>
+    
+    let root = document.querySelector(':root');
+    console.log(root);
+    let rootStyle = getComputedStyle(root)
+    const inputs = document.querySelectorAll('.controls input')
+    root.style.setProperty('--spacing' , '40px')
+    
+    inputs.forEach(input => input.addEventListener('change' , (e)=>{
+      if(input  === inputs[0]){
+        console.log(inputs[0].value);
+        root.style.setProperty('--spacing', inputs[0].value + "px");
+      }
+      
+      else if(input  === inputs[1]){
+        console.log("blur");
+        root.style.setProperty('--blur', inputs[1].value + "px");
+
+      }
+      
+      else if(input  === inputs[2]){
+        console.log("color");
+        root.style.setProperty('--base', inputs[2].value);
+      }
+      console.log(e);
+    } ))
+
+
   </script>
 
 </body>
