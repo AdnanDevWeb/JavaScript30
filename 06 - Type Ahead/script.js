@@ -22,6 +22,13 @@ function findMatches(wordToMatch , cities){
 
 function displayMatches(){
     let matchArray = findMatches(this.value,cities);
+    const html = matchArray.map(place => {
+        return `
+        <li class="name"> ${place.city}  ${place.state}<li>
+        <span class="population">Population : ${place.population}<span>
+        `
+    }).join('');
+    suggestions.innerHTML=html
     console.log(matchArray);
 }
 
