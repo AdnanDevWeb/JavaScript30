@@ -18,12 +18,13 @@
   let isDrawing = false;
   let lastX = 0;
   let lastY = 0;
-  ctx.lineWidth = 100
+  ctx.lineWidth = 70
 
 
   let width = window.innerWidth;
   let height =  window.innerHeight;
 
+  let hue = 0;
  
   function draw(e){
     console.log((e));
@@ -33,14 +34,16 @@
     green = Math.floor(Math.random() * 255)
     blue = Math.floor(Math.random() * 255)
 
+    ctx.strokeStyle = `hsl(${hue} , 100% , 50%`;
 
     ctx.beginPath();
     ctx.moveTo(lastX , lastY)
     ctx.lineTo(e.offsetX , e.offsetY);
     ctx.stroke();
     [lastX , lastY] = [e.offsetX , e.offsetY]
-    ctx.strokeStyle = `rgb(${fHslValue}, ${green}, ${blue}`;
-
+    hue++
+    if(ctx.lineWidth === 100) ctx.lineWidth = 100;
+    else ctx.lineWidth++;
 }
 
   canvas.addEventListener('mousemove' , draw)
