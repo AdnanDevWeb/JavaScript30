@@ -54,33 +54,15 @@
   </style>
 
   <script>
-    
-    let root = document.querySelector(':root');
-    console.log(root);
-    let rootStyle = getComputedStyle(root)
-    const inputs = document.querySelectorAll('.controls input')
-    root.style.setProperty('--spacing' , '40px')
-    
+    const root = document.querySelector(':root')
+    const inputs = document.querySelectorAll('input')
+
+
+
     inputs.forEach(input => input.addEventListener('change' , (e)=>{
-      if(input  === inputs[0]){
-        console.log(inputs[0].value);
-        root.style.setProperty('--spacing', inputs[0].value + "px");
-      }
-      
-      else if(input  === inputs[1]){
-        console.log("blur");
-        root.style.setProperty('--blur', inputs[1].value + "px");
-
-      }
-      
-      else if(input  === inputs[2]){
-        console.log("color");
-        root.style.setProperty('--base', inputs[2].value);
-      }
-      console.log(e);
-    } ))
-
-
+      if(e.target.type === "color") root.style.setProperty(`--${e.target.name}`,e.target.value) 
+      else root.style.setProperty(`--${e.target.name}`,e.target.value + "px") 
+    }))
   </script>
 
 </body>
