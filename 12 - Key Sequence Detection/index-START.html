@@ -7,6 +7,34 @@
 </head>
 <body>
 <script>
+
+
+const pressed = [];
+const secretCode = "adnan"
+window.addEventListener('keyup', (e)=>{
+  pressed.push(e.key)
+  console.log(pressed);
+  if(pressed.length > 5){
+    pressed.shift()
+  }
+
+  if(pressed.join('').includes(secretCode)){
+    console.log("matched");
+    cornify_add()
+  }
+
+})
+ 
+
+
+
+
+
+
+
+
+
+
 </script>
 </body>
 </html>
